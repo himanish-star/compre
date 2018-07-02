@@ -6,7 +6,9 @@ chrome.storage.sync.get('itemsList', function (item) {
   itemsURL.forEach(function (element) {
     let liElement = document.createElement('li');
     liElement.innerHTML = `
-      <a href='${element.url}'>${element.url.length > 80 ? element.url.slice(0, 80) + '...' : element.url }</a>
+      <a href='${element.url}'>
+        ${element.url.length > 80 ? element.url.slice(0, 80) + '...' : element.url }
+      </a>
     `;
     itemsUL.appendChild(liElement);
   })
