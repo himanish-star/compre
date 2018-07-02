@@ -12,12 +12,6 @@
     "storage",
     "declarativeContent",
     "contextMenus"],
-  "content_scripts": [
-    {
-      "matches": ["https://www.amazon.in/*"],
-      "js": ["scrapeItemPage.js"]
-    }
-  ],
   "browser_action": {
     "default_popup": "popup.html"
   }
