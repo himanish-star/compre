@@ -26,6 +26,8 @@ function retrievePrice(doc) {
 function retrieveDetails(doc) {
   const featureBullets = doc.getElementById("feature-bullets");
   let morePoints = doc.getElementById('prodDetails');
+  let morePoints1 = doc.getElementById('techSpecSoftlinesWrap');
+  let morePoints2 = doc.getElementById('technicalSpecifications_feature_div');
   let featureDetails = [];
   if(featureBullets) {
     const points = featureBullets.getElementsByTagName('li');
@@ -33,17 +35,36 @@ function retrieveDetails(doc) {
       featureDetails.push(point.innerText.trim());
     }
   }
-  let moreDetails = [];
   if(morePoints) {
     morePoints = morePoints.getElementsByTagName('table')[0]
     .getElementsByTagName('td');
     for(let i = 0; i < morePoints.length; i += 2) {
       let object = {};
       object[morePoints[i].innerText.trim()] = morePoints[i+1].innerText.trim();
-      moreDetails.push(object);
+      featureDetails.push(object);
     }
   }
-  return { moreDetails: moreDetails, featureDetails: featureDetails };
+  if(morePoints1) {
+    morePoints1 = morePoints1.getElementsByTagName('table')[0]
+      .getElementsByTagName('td');
+    for(let i = 0; i < morePoints1.length; i += 2) {
+      let object = {};
+      object[morePoints1[i].innerText.trim()] = morePoints1[i+1].innerText.trim();
+      featureDetails.push(object);
+    }
+  }
+  if(morePoints2) {
+    morePoints2 = morePoints2.getElementsByTagName('table')[0]
+      .getElementsByTagName('tr');
+    for(let i = 0; i < morePoints2.length; i ++) {
+      let object = {};
+      object[morePoints2[i].getElementsByTagName('th')[0].innerText.trim()] = morePoints2[i].getElementsByTagName('td')[0].innerText.trim();
+      featureDetails.push(object);
+    }
+  }
+  return {
+    featureDetails: featureDetails,
+  };
 }
 
 function extractWebPage(doc) {
@@ -57,7 +78,7 @@ function extractWebPage(doc) {
   })
 }
 
-chrome.storage.sync.get('itemsList', async function (object) {
+chrome.storage.sync.get('itemsList', function (object) {
   if(isEmpty(object)) {
     extractWebPage(document)
       .then((JSON_data) => {
