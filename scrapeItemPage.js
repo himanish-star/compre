@@ -7,6 +7,18 @@ function isEmpty(obj) {
   return true;
 }
 
+function retrieveReviews(doc) {
+  let reviewList = doc.getElementById('cm-cr-dp-review-list');
+  let reviews = [];
+  if(reviewList) {
+    reviewList = reviewList.getElementsByClassName('review-data');
+    for(review of reviewList) {
+      reviews.push(review.innerText.trim());
+    }
+  }
+  return reviews;
+}
+
 function retrieveImageURL(doc) {
   return (doc.getElementById("landingImage") || doc.getElementById("imgBlkFront")).getAttribute('src');
 }
@@ -73,19 +85,23 @@ function extractWebPage(doc) {
       imageUrl: retrieveImageURL(doc),
       title: retrieveTitle(doc),
       price: retrievePrice(doc),
-      details: retrieveDetails(doc)
+      details: retrieveDetails(doc),
+      reviews: retrieveReviews(doc)
     });
   })
 }
 
-chrome.storage.sync.get('itemsList', function (object) {
-  if(isEmpty(object)) {
-    extractWebPage(document)
-      .then((JSON_data) => {
-        console.log(JSON_data);
-        // let itemsList = [];
-        // itemsList.push(JSON_data);
-        // chrome.storage.sync.set({ itemsList: JSON.stringify(itemsList) });
-      })
-  }
+chrome.storage.local.get('listOfItems', function (obj) {
+  extractWebPage(document)
+    .then((JSON_data) => {
+      console.log(JSON_data);
+      let itemsList = [];
+      if(!isEmpty(obj)) {
+        itemsList = obj.listOfItems;
+      }
+      itemsList.push(JSON_data);
+      chrome.storage.local.set({ 'listOfItems': itemsList}, () => {
+        console.log('done', itemsList);
+      });
+    })
 })

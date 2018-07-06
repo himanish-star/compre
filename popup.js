@@ -1,6 +1,13 @@
 let ulContainer = document.getElementById('itemsList');
 const backgroundPage = chrome.extension.getBackgroundPage();
 
+const openPageBtn = document.getElementById('openPage');
+openPageBtn.addEventListener('click', () => {
+  const tabProperties = {
+    url: './comparePage.html'
+  }
+  chrome.tabs.create(tabProperties);
+})
 chrome.storage.sync.get('itemsList', function (object) {
   // let items = JSON.parse(object.itemsList);
   // items.forEach(function (element) {
