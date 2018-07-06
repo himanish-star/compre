@@ -13,10 +13,6 @@ body, html {
   height: 10%;
 }
 
-#compareBox {
-  font-size: 80%;
-}
-
 #compareBox > div:nth-child(even) {
   background-color: lightgray;
 }
@@ -25,6 +21,10 @@ body, html {
   margin-top: 1px;
   border: solid;
   border-spacing: inherit;
+}
+
+#compareBox > div ul {
+  font-size: 80%;
 }
 
 .descriptor {
