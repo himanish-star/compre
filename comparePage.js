@@ -1,5 +1,10 @@
 chrome.storage.local.get('listOfItems', (obj) => {
   let productList = obj.listOfItems;
+  if(!productList || productList.length < 2) {
+    window.alert('Please add exactly two items to compare');
+    return;
+  }
+  document.body.style.display = 'inherit';
   const imgDisplays = document.getElementById('imgDisplay')
     .getElementsByTagName('img');
   const titleDisplays = document.getElementById('productTitle')

@@ -23,8 +23,8 @@ body, html {
   border-spacing: inherit;
 }
 
-#compareBox > div ul {
-  font-size: 80%;
+#compareBox > div {
+  font-size: 15px;
 }
 
 .descriptor {
@@ -33,4 +33,13 @@ body, html {
 
 .itemContentSeparator {
   border-left: dashed 2px;
+}
+
+.itemContentSeparator ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.itemContentSeparator li:nth-child(even) {
+  background-color: lightgray;
 }
