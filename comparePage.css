@@ -1,8 +1,36 @@
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
 #imgDisplay img{
-  height: 90%;
-  width: 80%;
+  height: 100%;
+  width: 50%;
+  margin-left: 25%;
+}
+
+#imgDisplay {
+  height: 10%;
 }
 
 #compareBox {
   font-size: 80%;
+}
+
+#compareBox > div:nth-child(even) {
+  background-color: lightgray;
+}
+
+#compareBox > div {
+  margin-top: 1px;
+  border: solid;
+  border-spacing: inherit;
+}
+
+.descriptor {
+  font-weight: bold;
+}
+
+.itemContentSeparator {
+  border-left: dashed 2px;
 }

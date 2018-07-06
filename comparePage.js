@@ -24,16 +24,16 @@ chrome.storage.local.get('listOfItems', (obj) => {
       } else {
         Object.keys(detail).forEach(key => {
           if(key) {
-            productDetails[i].innerHTML += `<li>${key}: ${detail[key]}</li>` + '\n';
+            productDetails[i].innerHTML += `<li><b>${key}</b>: ${detail[key]}</li>` + '\n';
           }
         })
       }
     }
     for(let j = 0 ; j < productList[i].reviews.length; j +=2) {
       customerReviews[i].innerHTML += `<li>
-        ${productList[i].reviews[j]}
+        Tag: <b>${productList[i].reviews[j]}</b>
         <br>
-        ${productList[i].reviews[j+1]}
+        Comment: ${productList[i].reviews[j+1]}
       </li>`
     }
   }
