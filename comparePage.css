@@ -37,9 +37,11 @@ body, html {
 
 .itemContentSeparator ul {
   padding: 0;
-  list-style-type: none;
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
 .itemContentSeparator li:nth-child(even) {
   background-color: lightgray;
+  margin: 5% 0% 5% 0%;
 }
