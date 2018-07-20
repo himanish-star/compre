@@ -1,6 +1,5 @@
 const ulContainer = document.getElementById('compareList');
 const displayMSG = document.getElementById('display');
-const backgroundPage = chrome.extension.getBackgroundPage();
 
 function isEmpty(obj) {
   for(var key in obj) {
@@ -9,6 +8,30 @@ function isEmpty(obj) {
     }
   }
   return true;
+}
+
+function removeScrapedData(items, index) {
+  console.log(items,index);
+  let newListOfItems = [];
+  ulContainer.innerHTML = "";
+  for(let ti in items) {
+    if(ti==index) {
+      continue;
+    }
+    let liElement = document.createElement('li');
+    liElement.innerHTML = `
+      <b>${items[ti].title}</b> <span class="cls_btn">x<span>
+    `;
+    ulContainer.appendChild(liElement);
+    newListOfItems.push(items[ti]);
+  }
+  const clsBtns = Array.from(document.getElementsByClassName('cls_btn'));
+  clsBtns.forEach((clsBtn, index) => {
+    clsBtn.addEventListener('click', () => {
+      removeScrapedData(newListOfItems, index);
+    })
+  })
+  chrome.storage.local.set({ listOfItems: newListOfItems });
 }
 
 const openPageBtn = document.getElementById('openPage');
@@ -25,13 +48,18 @@ chrome.storage.local.get('listOfItems', function (object) {
     document.getElementById('openPage').style.display = "none";
   } else {
     let items = object.listOfItems;
-    backgroundPage.console.log(items);
     items.forEach(function (element) {
       let liElement = document.createElement('li');
       liElement.innerHTML = `
-        <b>${element.title}</b>
+        <b>${element.title}</b> <span class="cls_btn">x<span>
       `;
       ulContainer.appendChild(liElement);
+    })
+    const clsBtns = Array.from(document.getElementsByClassName('cls_btn'));
+    clsBtns.forEach((clsBtn, index) => {
+      clsBtn.addEventListener('click', () => {
+        removeScrapedData(items, index);
+      })
     })
   }
 })
