@@ -11,7 +11,6 @@ function isEmpty(obj) {
 }
 
 function removeScrapedData(items, index) {
-  console.log(items,index);
   let newListOfItems = [];
   ulContainer.innerHTML = "";
   for(let ti in items) {
@@ -32,6 +31,10 @@ function removeScrapedData(items, index) {
     })
   })
   chrome.storage.local.set({ listOfItems: newListOfItems });
+  if(!newListOfItems.length) {
+    displayMSG.innerText = "Please add something to compare";
+    document.getElementById('openPage').style.display = "none";
+  }
 }
 
 const openPageBtn = document.getElementById('openPage');
