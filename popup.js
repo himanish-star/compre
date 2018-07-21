@@ -46,7 +46,7 @@ openPageBtn.addEventListener('click', () => {
 })
 
 chrome.storage.local.get('listOfItems', function (object) {
-  if(isEmpty(object)) {
+  if(isEmpty(object) || !object.listOfItems.length) {
     displayMSG.innerText = "Please add something to compare";
     document.getElementById('openPage').style.display = "none";
   } else {
