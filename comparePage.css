@@ -9,6 +9,14 @@ body, html {
   margin-left: 25%;
 }
 
+#head_display img {
+  height: 50%;
+  width: 60%;
+  margin-right: 26%;
+  margin-left: 20%;
+  margin-bottom: 3%;
+}
+
 #imgDisplay {
   height: 10%;
 }
