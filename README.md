@@ -1,5 +1,8 @@
-# compre
-This is basically a chrome extension that helps users to compare two products on Amazon. Currently this extension works only in amazon.in
+# Compre
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - a chrome extension
+
+This is basically a chrome extension that helps users to compare two products on Amazon. Currently this extension works only in **amazon.in**
+
 Two products are compared on the basis of the following fields:
 
 <table>
@@ -10,9 +13,17 @@ Two products are compared on the basis of the following fields:
 
 ## Steps to install and use
 
-Currently this extension has not been published yet as there are still some more minor complications which remain to be resolved but however you can try out the unpackaged version of this extension. Below are the steps to follow to load the unpacked extension:
+Currently this extension has not been published yet so you can try out the unpackaged version of this extension. Below are the steps to follow to load the unpacked extension:
 
-1. You can clone or download this repo via the terminal by running 
-git clone https:github.com/himanish-star/compre.git
+1. You can clone or download this repo via the terminal by running
+```Terminal
+git clone https://github.com/himanish-star/compre.git
+```
 
-2. Then
+2. Then open the Extension Management page by navigating to chrome://extensions.
+
+ - The Extension Management page can also be opened by clicking on the Chrome menu, hovering over More Tools then selecting Extensions.
+ - Enable Developer Mode by clicking the toggle switch next to Developer mode.
+ - Click the LOAD UNPACKED button and select the extension directory.
+ 
+ ![alt text](file:///home/soumya/Desktop/demo.png)
