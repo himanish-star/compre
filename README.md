@@ -1,4 +1,5 @@
-# Compre
+<img src="https://user-images.githubusercontent.com/30361728/43070110-8d4a3138-8e8c-11e8-95a7-ec99cb339d9f.png">
+# Compre 
 #### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - a chrome extension
 
 ## Introduction
