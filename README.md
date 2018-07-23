@@ -31,7 +31,7 @@ git clone https://github.com/himanish-star/compre.git
  
 ![](https://user-images.githubusercontent.com/30361728/43070157-b2cd9ae4-8e8c-11e8-84f9-7fe8424e0e2b.png)
 _____________________________________________________________
-3. Then after you load the unpacked extension then you can view the extension mentioned in the extension page as shown in the figure below: 
+3. Then after you load the unpacked extension you can view the extension mentioned in the extension page as shown in the figure below: 
 
 ![](https://user-images.githubusercontent.com/30361728/43070217-e3c05e52-8e8c-11e8-9bbe-eed148b31706.png)
 _____________________________________________________________
