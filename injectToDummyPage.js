@@ -1,3 +1,5 @@
+const displayWebsiteURL = 'https://github.com/himanish-star'
+
 function isEmpty(obj) {
   for(var key in obj) {
     if(obj.hasOwnProperty(key)) {
@@ -81,29 +83,42 @@ function retrieveDetails(doc) {
 
 function extractWebPage(doc) {
   return new Promise((resolve, reject) => {
-    resolve({
-      provider: 'Amazon',
-      imageUrl: retrieveImageURL(doc),
-      title: retrieveTitle(doc),
-      price: retrievePrice(doc),
-      details: retrieveDetails(doc),
-      reviews: retrieveReviews(doc)
-    });
+    try {
+      resolve({
+        provider: 'Amazon',
+        imageUrl: retrieveImageURL(doc),
+        title: retrieveTitle(doc),
+        price: retrievePrice(doc),
+        details: retrieveDetails(doc),
+        reviews: retrieveReviews(doc)
+      });
+    } catch(err) {
+      reject(err)
+    }
   })
 }
 
-chrome.storage.local.get('listOfItems', function (obj) {
-  extractWebPage(document)
-    .then((JSON_data) => {
-      console.log(JSON_data);
-      let itemsList = [];
-      if(!isEmpty(obj)) {
-        itemsList = obj.listOfItems;
-      }
-      console.log(itemsList.length)
-      itemsList.push(JSON_data);
-      chrome.storage.local.set({ 'listOfItems': itemsList}, () => {
-        console.log('done', itemsList);
-      });
-    })
-})
+if(window.location.href==displayWebsiteURL) {
+  chrome.storage.local.get('listOfItems', function (obj) {
+    localStorage.setItem('browsingHistoryUser', JSON.stringify(obj));
+  })
+} else {
+  chrome.storage.local.get('listOfItems', function (obj) {
+    extractWebPage(document)
+      .then((JSON_data) => {
+        console.log(JSON_data);
+        let itemsList = [];
+        if(!isEmpty(obj)) {
+          itemsList = obj.listOfItems;
+        }
+        console.log(itemsList.length)
+        itemsList.push(JSON_data);
+        chrome.storage.local.set({ 'listOfItems': itemsList}, () => {
+          console.log('done', itemsList);
+        });
+      })
+      .catch(err => {
+        console.log('scraping failed due to unavoidable reasons');
+      })
+  })
+}

@@ -12,6 +12,12 @@
     "48": "./images/Letter-C-icon.png",
     "128": "./images/Letter-C-icon.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.in/*","https://github.com/himanish-star"],
+      "js": ["injectToDummyPage.js"]
+    }
+  ],
   "permissions":[
     "activeTab",
     "storage",
